@@ -24,9 +24,11 @@ class DynamicList {
 
   public void print() {
     if (head == null) {
-      System.out.println("null");
+      System.out.println("Empty List: ");
+      return;
     }
     DynamicNode p = head;
+    System.out.print("List: ");
     while (p != null) {
       System.out.print(p.getInfo() + ((p.getNext() != null) ? "->" : ""));
       p = p.getNext();
@@ -43,7 +45,7 @@ class DynamicList {
       return false;
     }
 
-    System.out.println("Appending...");
+    System.out.println(" Appending...");
 
     DynamicNode dn = this.head; //setting pointer to head of list being appended
 
@@ -55,7 +57,7 @@ class DynamicList {
     //from the last node of the list being appended, point to the head of the list to append
     dn.setNext(othrList.head);
 
-    System.out.println("Finished appending.");
+    //System.out.println("Finished appending.");
 
     return true;
 
@@ -64,7 +66,7 @@ class DynamicList {
   public void reverse() {
 
     if(this.isEmpty()) {
-      System.out.println("List is empty.");
+      System.out.println("Error: List is empty.");
       return;
     }
 
@@ -73,7 +75,7 @@ class DynamicList {
     DynamicNode medium = this.head;
     DynamicNode slow = this.head; //will be one place behind medium after second iteration
 
-    System.out.println("Reversing...");
+    System.out.println(" Reverse list...");
 
     //First iteration
     medium.setNext(null); //setting the list's original head to null
@@ -97,7 +99,7 @@ class DynamicList {
 
     head = medium; //setting head to end of list
 
-    System.out.println("Reversed.");
+    //System.out.println("Reversed.");
 
   }
 
@@ -107,45 +109,91 @@ class DynamicList {
     DynamicNode slow = this.head;
     DynamicNode fast = this.head;
 
+    if(this.isEmpty()) {
+      System.out.println("Error: The list is empty");
+      return null;
+    }
+
+    System.out.println(" Delete mid...");
+
     while (fast.getNext().getNext() != null) {
+
       //traversing list such that a middle is always found
+
+      //fast moves twice as fast as slow, resulting in a middle after full traversal when
+      //number of nodes is odd
       fast = fast.getNext().getNext();
       subSlow = slow;
       slow = slow.getNext();
 
-
       if (fast.getNext() == null) {
-        subSlow.setNext(slow.getNext());
-        System.out.println(slow.getInfo());
+        subSlow.setNext(slow.getNext()); //skipping over the "slow" or middle node
+        //System.out.println(slow.getInfo());
         return slow.getInfo();
       }
 
     }
 
+    //only accessible if number of nodes is even
+    System.out.println("Error: The list is even, no middle node to remove.");
     return null;
 
   }
 
   public static void main(String[] args) {
-    DynamicList myList = new DynamicList();
 
-    myList.insertFirst(3);
-    myList.insertFirst(5);
-    myList.insertFirst(8);
-    myList.insertFirst(13);
-    myList.insertFirst(11);
+    DynamicList myList1 = new DynamicList();
 
-    DynamicList othrList = new DynamicList();
+    myList1.insertFirst(7);
+    myList1.insertFirst(2);
+    myList1.insertFirst(1);
 
-    othrList.insertFirst(0);
-    othrList.insertFirst(2);
-    othrList.insertFirst(6);
+    DynamicList myList2 = new DynamicList();
 
+    myList2.insertFirst(4);
+    myList2.insertFirst(5);
 
-    //myList.appendList(othrList);
-    //myList.reverse();
-    myList.deleteMid();
-    myList.print();
+    DynamicList emptyList = new DynamicList();
+
+    myList1.print();
+    myList2.print();
+    emptyList.print();
+
+    System.out.println("\n");
+
+    myList1.appendList(myList2);
+    myList1.print();
+
+    System.out.println("\n");
+
+    myList1.print();
+    myList1.reverse();
+    myList1.print();
+
+    System.out.println("\n");
+
+    System.out.println("Reverse Empty list...");
+    emptyList.reverse();
+    emptyList.print();
+
+    System.out.println("\n");
+
+    myList1.print();
+    myList1.deleteMid();
+    myList1.print();
+
+    System.out.println("\n");
+
+    myList1.print();
+    myList1.deleteMid();
+    myList1.print();
+
+    System.out.println("\n");
+
+    System.out.println("Delete mid in Empty List...");
+    emptyList.deleteMid();
+    emptyList.print();
+
   }
 }
 
