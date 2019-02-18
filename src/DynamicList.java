@@ -40,7 +40,7 @@ class DynamicList {
 
   public boolean appendList(DynamicList othrList) {
 
-    if(this.isEmpty() || othrList.isEmpty()) {
+    if (this.isEmpty() || othrList.isEmpty()) {
       System.out.println("Could not append.");
       return false;
     }
@@ -65,7 +65,7 @@ class DynamicList {
 
   public void reverse() {
 
-    if(this.isEmpty()) {
+    if (this.isEmpty()) {
       System.out.println("Error: List is empty.");
       return;
     }
@@ -109,7 +109,7 @@ class DynamicList {
     DynamicNode slow = this.head;
     DynamicNode fast = this.head;
 
-    if(this.isEmpty()) {
+    if (this.isEmpty()) {
       System.out.println("Error: The list is empty");
       return null;
     }
@@ -159,36 +159,36 @@ class DynamicList {
     myList2.print();
     emptyList.print();
 
-    System.out.println("\n");
+    System.out.println();
 
     myList1.appendList(myList2);
     myList1.print();
 
-    System.out.println("\n");
+    System.out.println();
 
     myList1.print();
     myList1.reverse();
     myList1.print();
 
-    System.out.println("\n");
+    System.out.println();
 
     System.out.println("Reverse Empty list...");
     emptyList.reverse();
     emptyList.print();
 
-    System.out.println("\n");
+    System.out.println();
 
     myList1.print();
     myList1.deleteMid();
     myList1.print();
 
-    System.out.println("\n");
+    System.out.println();
 
     myList1.print();
     myList1.deleteMid();
     myList1.print();
 
-    System.out.println("\n");
+    System.out.println();
 
     System.out.println("Delete mid in Empty List...");
     emptyList.deleteMid();
@@ -196,4 +196,3 @@ class DynamicList {
 
   }
 }
-
