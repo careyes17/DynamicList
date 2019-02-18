@@ -101,6 +101,31 @@ class DynamicList {
 
   }
 
+  public Object deleteMid() {
+    //Initialization of nodes
+    DynamicNode subSlow = this.head;
+    DynamicNode slow = this.head;
+    DynamicNode fast = this.head;
+
+    while (fast.getNext().getNext() != null) {
+      //traversing list such that a middle is always found
+      fast = fast.getNext().getNext();
+      subSlow = slow;
+      slow = slow.getNext();
+
+
+      if (fast.getNext() == null) {
+        subSlow.setNext(slow.getNext());
+        System.out.println(slow.getInfo());
+        return slow.getInfo();
+      }
+
+    }
+
+    return null;
+
+  }
+
   public static void main(String[] args) {
     DynamicList myList = new DynamicList();
 
@@ -119,8 +144,8 @@ class DynamicList {
 
     //myList.appendList(othrList);
     //myList.reverse();
+    myList.deleteMid();
     myList.print();
-    //myList.printList();
   }
 }
 
